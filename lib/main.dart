@@ -1,9 +1,13 @@
+import 'package:adhoc/src/data/data_sources/auth_remote_data_source.dart';
+import 'package:adhoc/src/data/repositories/auth_repository.dart';
 import 'package:adhoc/src/presentation/provider/bottom_nav_provider.dart';
 import 'package:adhoc/src/presentation/screens/bottom_nav.dart';
+import 'package:adhoc/src/presentation/screens/login/bloc/login_bloc.dart';
 import 'package:adhoc/src/presentation/screens/user_detail_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'exports_main.dart';
-import 'src/presentation/screens/login/ui/login.dart';
+import 'src/presentation/screens/login/view/login.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,10 +37,22 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => BottomNavProvider(),
         ),
+        BlocProvider(
+          create: (context) => LoginBloc(
+            authenticationRepository: AuthRepositoryImpl(
+              authDataSource: AuthRemoteDataSourceImpl(
+                appUrls: getIt<AppUrls>(),
+                sharedPreferencesEntity: SharedPreferencesEntity(),
+              ),
+            ),
+          ),
+          child: Container(),
+        )
       ],
       child: MaterialApp(
         title: 'Ad Hoc Learning',
         theme: ThemeData(
+          fontFamily: "Poppins",
           dropdownMenuTheme: DropdownMenuThemeData(
             menuStyle: MenuStyle(
               backgroundColor: const WidgetStatePropertyAll(AppColors.white),
@@ -158,11 +174,14 @@ class MyApp extends StatelessWidget {
                 },
               );
 
-
-                 case RouteName.userDetailScreen:
+            case RouteName.userDetailScreen:
+            final slug  = settings.arguments as String;
               return MaterialPageRoute(
                 builder: (context) {
-                  return const UserDetailScreen();
+                  return  UserDetailScreen(
+                    slug: slug,
+
+                  );
                 },
               );
             default:

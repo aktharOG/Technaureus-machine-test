@@ -45,20 +45,27 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String password,
   }) async {
     final client = http.Client();
+
     try {
-      final url = Uri.https(EnvLoader.get('BASE_URL'), _appUrls.login);
+      final url = Uri.http(EnvLoader.get('BASE_URL'), _appUrls.login);
       // final lang = await _sharedPreferencesEntity.getAppLocale();
-      log('mobile number is $username', name: 'AuthDataSourceImpl');
+      log('mobile number is $username  body : $username $password',
+          name: 'AuthDataSourceImpl');
+      log("url : $url");
+
+      final data = jsonEncode({
+        'username': username,
+        'password': password,
+      });
+
       final response = await client.post(
         url,
-        body: {
-          'username': username,
-          'password': password,
+        body: data,
+        headers: {
+          "Accesskey": EnvLoader.get('API_KEY'),
+          "Content-Type": "application/x-www-form-urlencoded",
+          //   "lan": '$lang',
         },
-        // headers: {
-        //   "Accesskey": EnvLoader.get('API_KEY'),
-        //   "lan": '$lang',
-        // },
       );
       log(
         'Response: ${response.body} ---${response.statusCode}',
@@ -66,15 +73,17 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-                _sharedPreferencesEntity.setToken(data['token']);
+        _sharedPreferencesEntity.setToken(data['token']);
 
+        log("res : $data");
 
-        return Right(int.parse('${data['otp']}'));
+        return Right(int.parse('${data['customer_id']}'));
       } else {
+        log("errror res : ${response.body}");
         return Left(
           handleStatusCode(
             response.statusCode,
-            '${jsonDecode(response.body)['message']}',
+            '${jsonDecode(response.body)['data']}',
           ),
         );
       }

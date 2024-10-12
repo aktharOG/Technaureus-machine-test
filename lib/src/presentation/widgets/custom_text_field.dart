@@ -30,6 +30,7 @@ class CustomTextfield extends StatelessWidget {
   final Function(String)? onFieldSubmitted;
   final List<TextInputFormatter> inputFormatters;
   final BorderRadius? borderRadius;
+  final String? errorText;
 
   const CustomTextfield({
     super.key,
@@ -59,6 +60,7 @@ class CustomTextfield extends StatelessWidget {
     this.keyboardType,
     this.onFieldSubmitted,
     this.contentPadding,
+    this.errorText
   });
 
   @override
@@ -111,6 +113,7 @@ class CustomTextfield extends StatelessWidget {
                   color: foregroundColor ?? Colors.black,
                 ),
                 decoration: InputDecoration(
+                  errorText: errorText,
                   //  labelText: name,
                   fillColor: backgroundColor ?? AppColors.eyeBackground,
                   contentPadding: contentPadding ??

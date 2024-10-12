@@ -4,7 +4,8 @@ import 'package:adhoc/src/presentation/widgets/app_space_widget.dart';
 import 'package:adhoc/src/presentation/widgets/custom_text.dart';
 
 class UserDetailScreen extends StatelessWidget {
-  const UserDetailScreen({super.key});
+  final String slug;
+  const UserDetailScreen({super.key,required this.slug});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class UserDetailScreen extends StatelessWidget {
                 Stack(
                   children: [
                     Hero(
-                      tag: 'user-profile',
+                      tag: 'user-profile$slug',
                       child: Image.asset(
                         AppImages.img1,
                         height: 400,
@@ -37,12 +38,17 @@ class UserDetailScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.black.withOpacity(0.3),
-                            child: const Icon(
-                              Icons.arrow_back_ios_new,
-                              color: Colors.white,
-                              size: 20,
+                          InkWell(
+                            onTap: (){
+                              navigator?.pop();
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: Colors.black.withOpacity(0.3),
+                              child: const Icon(
+                                Icons.arrow_back_ios_new,
+                                color: Colors.white,
+                                size: 20,
+                              ),
                             ),
                           ),
                           CircleAvatar(
@@ -95,14 +101,15 @@ class UserDetailScreen extends StatelessWidget {
                       Wrap(
                         children: List.generate(
                           5,
-                          (index) => Padding(
+                          (index) =>  Padding(
                             padding: const EdgeInsets.all(4.0),
                             child: Chip(
+                              
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30)),
-                              backgroundColor: AppColors.chipRed,
-                              label: CustomText(name: "Music"),
-                            ),
+                                borderRadius: BorderRadius.circular(30)
+                              ),
+                                backgroundColor: AppColors.chipRed,
+                                label: CustomText(name: "Music"),),
                           ),
                         ),
                       ),

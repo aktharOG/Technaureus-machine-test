@@ -16,6 +16,7 @@ class HomeTab extends StatelessWidget {
         slivers: [
           // appbar
           SliverAppBar(
+            automaticallyImplyLeading: false,
             centerTitle: false,
             title: Image.asset(
               AppImages.logo,
@@ -89,7 +90,7 @@ class HomeTab extends StatelessWidget {
 
                   // horizonatal list view
 
-                  CustomHorizontalWidget(),
+                  CustomHorizontalWidget(slug: "newmatches",),
                 ],
               ),
             ),
@@ -119,7 +120,7 @@ class HomeTab extends StatelessWidget {
 
                   // horizonatal list view
 
-                  CustomHorizontalWidget(),
+                  CustomHorizontalWidget(slug: "suggested",),
                 ],
               ),
             ),
@@ -149,7 +150,7 @@ class HomeTab extends StatelessWidget {
 
                   // horizonatal list view
 
-                  CustomHorizontalWidget(),
+                  CustomHorizontalWidget(slug: "allmatches",),
                 ],
               ),
             ),
@@ -161,8 +162,10 @@ class HomeTab extends StatelessWidget {
 }
 
 class CustomHorizontalWidget extends StatelessWidget {
+  final String slug;
   const CustomHorizontalWidget({
     super.key,
+    required this.slug
   });
 
   @override
@@ -179,7 +182,9 @@ class CustomHorizontalWidget extends StatelessWidget {
               topLeft: index == 0 ? const Radius.circular(30) : Radius.zero,
             ),
             onTap: () {
-              navigator?.pushNamed(RouteName.userDetailScreen);
+              navigator?.pushNamed(RouteName.userDetailScreen,
+              arguments: slug+index.toString()
+              );
             },
             child: Stack(
               children: [
@@ -198,7 +203,7 @@ class CustomHorizontalWidget extends StatelessWidget {
                       Stack(
                         children: [
                           Hero(
-                            tag: 'user-profile',
+                            tag: 'user-profile$slug$index',
                             child: ClipRRect(
                               borderRadius: BorderRadius.only(
                                 topLeft: index == 0
