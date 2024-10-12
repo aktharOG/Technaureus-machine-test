@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 class AppColors {
-  static const primary = Color(0xFF14A750);
+  static const primary = Color(0xFFD56551);
   static const primaryDark = Color(0xFF006027);
   static Color primaryLight = const Color(0xFF14A750).withOpacity(0.1);
   static const grey = Color(0xFFF7F7F7);
@@ -21,4 +21,12 @@ class AppColors {
   static const sheetColor = Color(0xFFE7F6ED);
   static const shimmerBase = Color.fromARGB(255, 238, 238, 238);
   static const shimmerHighlight = Color.fromARGB(255, 225, 225, 225);
+
+  // chip color
+
+
+    static const chipRed = Color(0xFFFEE1E3);
+    static const chipYellow = Color(0xFFFFFBD5);
+    static const chipSkyblue = Color(0xFFDAFCFE);
+
 }

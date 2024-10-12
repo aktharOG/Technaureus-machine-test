@@ -1,8 +1,9 @@
 import 'package:adhoc/src/presentation/provider/bottom_nav_provider.dart';
 import 'package:adhoc/src/presentation/screens/bottom_nav.dart';
+import 'package:adhoc/src/presentation/screens/user_detail_screen.dart';
 
 import 'exports_main.dart';
-import 'src/presentation/screens/login.dart';
+import 'src/presentation/screens/login/ui/login.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -154,6 +155,14 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(
                 builder: (context) {
                   return const BottomNavView();
+                },
+              );
+
+
+                 case RouteName.userDetailScreen:
+              return MaterialPageRoute(
+                builder: (context) {
+                  return const UserDetailScreen();
                 },
               );
             default:

@@ -41,6 +41,11 @@ dependencies:
   provider: ^6.1.2
   shared_preferences: ^2.3.2
   shimmer: ^3.0.0
+  flutter_svg: ^2.0.10+1
+  google_fonts: ^6.2.1
+  dots_indicator: ^3.0.0
+  carousel_slider: ^5.0.0
+  flutter_bloc: ^8.1.6
 
 dev_dependencies:
   build_runner: ^2.4.12
@@ -63,6 +68,9 @@ flutter:
     - .env.production
     - .env.development
     - .env.staging
+    - assets/images/
+    - assets/svg/
+    - assets/font/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

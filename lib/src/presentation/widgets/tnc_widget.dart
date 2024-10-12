@@ -22,7 +22,7 @@ class TnCWidget extends StatelessWidget {
             recognizer: TapGestureRecognizer()
               ..onTap = () {
                 log('Terms of Conditions');
-                navigator?.pushNamed(RouteName.tnc, arguments: true);
+             //   navigator?.pushNamed(RouteName.tnc, arguments: true);
               },
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   decoration: TextDecoration.underline,

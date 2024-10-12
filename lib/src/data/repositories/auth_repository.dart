@@ -4,9 +4,9 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 abstract class AuthRepository {
-  Future<Either<Failure, int>> loginWithMobile({
-    required String countryCode,
-    required String mobileNumber,
+  Future<Either<Failure, int>> loginWithUsername({
+    required String username,
+    required String password,
   });
 }
 
@@ -16,13 +16,13 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl({required AuthRemoteDataSource authDataSource})
       : _authDataSource = authDataSource;
   @override
-  Future<Either<Failure, int>> loginWithMobile({
-    required String countryCode,
-    required String mobileNumber,
+  Future<Either<Failure, int>> loginWithUsername({
+    required String username,
+    required String password,
   }) async {
-    return _authDataSource.loginWithMobile(
-      countryCode: countryCode,
-      mobileNumber: mobileNumber,
+    return _authDataSource.loginWithUsername(
+      username: username,
+      password: password,
     );
   }
 }

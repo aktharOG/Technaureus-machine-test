@@ -8,4 +8,9 @@ class BottomNavProvider extends ChangeNotifier {
     _currentIndex = index;
     notifyListeners();
   }
+
+  // home tab data 
+
+
+  
 }

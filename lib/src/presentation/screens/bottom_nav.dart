@@ -1,5 +1,6 @@
 import 'package:adhoc/exports_main.dart';
 import 'package:adhoc/src/presentation/provider/bottom_nav_provider.dart';
+import 'package:adhoc/src/presentation/screens/tabs/home_tab.dart';
 
 class BottomNavView extends StatelessWidget {
   const BottomNavView({super.key});
@@ -9,9 +10,7 @@ class BottomNavView extends StatelessWidget {
     return Scaffold(
       body: const IndexedStack(
         children: [
-          Center(
-            child: Text('Home'),
-          ),
+         HomeTab(),
           Center(
             child: Text('Search'),
           ),

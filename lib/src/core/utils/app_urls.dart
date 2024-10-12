@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 abstract class AppUrls {
   String get basePath;
 
-  String get sendOtp;
+  String get login;
 }
 
 @LazySingleton(as: AppUrls)
@@ -12,5 +12,5 @@ class AppUrlsImpl implements AppUrls {
   String get basePath => '/api';
 
   @override
-  String get sendOtp => '$basePath/sendotp/';
+  String get login => '$basePath/token/';
 }
